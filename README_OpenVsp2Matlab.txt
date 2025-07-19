@@ -25,9 +25,9 @@
 	* Edit AC 
 
 	If you select an AC from the dropdown menu, clicking on the "Edit AC" button you'll enable to edit the related .vsp3, otherwise a blank scketch pad will be opned.
-	When you have completed your edit, please save the AC in the folder Hangar.
+	When you have completed your edit, please save the AC in the folder Hangar, than click on "Refresh GUI" button to enable the modifications.
 	
- 7) The code automatically recognize the "typeOfTail" field of an aircraft stored in the Hangar. When you select one of them, please rember always to click on the
+ 7) The code automatically recognize the "typeOfTail" fiel of an aircraft stored in the Hangar. When you select one of them, please rember always to click on the
     "Save XML" button to enable final modification related to the XML, useful to start the analysis.
  
  8) The tool check for an upgrade of the file exe called 'importAC'. If an update is detected please following instructions
@@ -35,6 +35,8 @@
    * Read all the info displayed and then close the current importAC.exe window  
    * From the GUI, click on the "Update importAC" button
    * Then click again on the "Run code" button to launch the analysis with the new version of importAC.
+   
+   Please, periodically check also for a GUI update, clicking on the "Update GUI" button. If there will be an update, please, follow the displayed istructions.
 
  
  9) If you want to add a nacelle to a turboprop aircraft, consider adding a POD geometry in OpenVSP and renaming it as propeller_# (where # = 1, 2, 3, ... n).
