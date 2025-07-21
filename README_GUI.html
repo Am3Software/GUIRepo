@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README GUI - OpenVSP2MATLAB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.03) 10px,
+                rgba(255,255,255,0.03) 20px
+            );
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .step {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 49%, rgba(52, 152, 219, 0.1) 50%, transparent 51%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .step:hover::before {
+            opacity: 1;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 15px;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .step-title {
+            display: inline-block;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .step-content {
+            margin-left: 50px;
+            color: #555;
+        }
+
+        .button-highlight {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+            box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
+        }
+
+        .update-section {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            border-left-color: #f39c12;
+        }
+
+        .update-section::before {
+            background: linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.1) 50%, transparent 51%);
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .step-content {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+            
+            .step-number {
+                display: block;
+                margin: 0 auto 15px auto;
+            }
+            
+            .step-title {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛩️ OpenVSP2MATLAB GUI</h1>
+            <p>Complete Guide for Aircraft Analysis</p>
+        </div>
+
+        <div class="content">
+            <div class="step">
+                <span class="step-number">1</span>
+                <span class="step-title">Initial Setup & Hangar</span>
+                <div class="step-content">
+                    After installation, a folder called <strong>Hangar</strong> will be downloaded containing sample aircrafts. You can customize these aircrafts directly from the OpenVSP GUI by clicking the <span class="button-highlight">Edit AC</span> button. When finished, save your aircraft in the Hangar folder.
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <span class="step-title">Select Existing Aircraft</span>
+                <div class="step-content">
+                    You can select an aircraft already available in the Hangar using the dropdown menu next to the <strong>"nameOfAircraft"</strong> field in the GUI.
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-title">Launch GUI & Save Configuration</span>
+                <div class="step-content">
+                    <ol>
+                        <li>Launch the GUI by clicking on <strong>"importAC_GUI.exe"</strong></li>
+                        <li>Edit all the desired fields</li>
+                        <li>Click on <span class="button-highlight">Save XML</span></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <span class="step-title">Create or Modify Aircraft</span>
+                <div class="step-content">
+                    <p>To create a new aircraft or modify an existing one:</p>
+                    <ul>
+                        <li>Click on <span class="button-highlight">Edit AC</span></li>
+                        <li>If you select an AC from the dropdown menu, clicking "Edit AC" will enable editing of the related .vsp3 file</li>
+                        <li>Otherwise, a blank sketch pad will open</li>
+                        <li>When completed, save the AC in the <strong>Hangar</strong> folder</li>
+                        <li>Click on <span class="button-highlight">Refresh GUI</span> to enable modifications</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">5</span>
+                <span class="step-title">Automatic Tail Recognition</span>
+                <div class="step-content">
+                    The code automatically recognizes the <strong>"typeOfTail"</strong> field of aircraft stored in the Hangar. When you select one, always remember to click the <span class="button-highlight">Save XML</span> button to enable final XML modifications needed for analysis.
+                </div>
+            </div>
+
+            <div class="step update-section">
+                <span class="step-number">6</span>
+                <span class="step-title">Update Management</span>
+                <div class="step-content">
+                    <p><strong>ImportAC Updates:</strong></p>
+                    <div class="warning">
+                        ⚠️ The tool automatically checks for upgrades to the 'importAC' exe file
+                    </div>
+                    <p>If an update is detected:</p>
+                    <ol>
+                        <li>Read all displayed information</li>
+                        <li>Close the current importAC.exe window</li>
+                        <li>Click on <span class="button-highlight">Update importAC</span></li>
+                        <li>Click <span class="button-highlight">Run code</span> to launch analysis with the new version</li>
+                    </ol>
+                    
+                    <p style="margin-top: 20px;"><strong>GUI Updates:</strong></p>
+                    <p>Periodically check for GUI updates by clicking <span class="button-highlight">Update GUI</span>. If an update is available, follow the displayed instructions.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🔧 For support and updates, check the official documentation</p>
+        </div>
+    </div>
+</body>
+</html>
