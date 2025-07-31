@@ -93,6 +93,16 @@
       padding: 40px;
     }
 
+    .whs-info {
+      background: linear-gradient(135deg, #e67e22, #d35400);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(230, 126, 34, 0.3);
+    }
+
     .step {
       margin-bottom: 30px;
       padding: 25px;
@@ -150,6 +160,20 @@
     .step-content {
       margin-left: 50px;
       color: #555;
+    }
+
+    .link-highlight {
+      background: linear-gradient(135deg, #27ae60, #2ecc71);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      display: inline-block;
+      margin: 2px;
+      text-decoration: none;
+      box-shadow: 0 3px 10px rgba(39, 174, 96, 0.3);
+      z-index: 2;
+      pointer-events: auto;
     }
 
     .button-highlight {
@@ -231,14 +255,20 @@
         text-align: center;
       }
     }
+
+    /* Smooth scroll*/
+
+    html {
+      scroll-behavior: smooth;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
-   
+
     <div class="header-container">
-       <p>Complete Guide for M2VSP GUI</p>
+      <p>Complete Guide for M2VSP GUI</p>
       <div class="header">
         <img src="https://raw.githubusercontent.com/Am3Software/GUIRepo/main/logo.png" alt="Logo" style="height: 80px; margin-bottom: 15px; drop-shadow: 0 2px 4px rgba(0,0,0,0.3);">
         <h1>M2VSP GUI</h1>
@@ -247,8 +277,17 @@
     </div>
     <div class="content">
 
+      <div class="whs-info">
+        <h3>📋 What's new?</h3>
+        <p>Added a new feature <strong>Show Results</strong> - By clicking on this button a reuslts-manager window will
+          be opned.</p>
+        <a href="#step-6" class="link-highlight">
+          <p>Further info <strong>click here</strong></p>
+        </a>
+      </div>
 
-       <div class="step">
+
+      <div class="step">
         <span class="step-number">1</span>
         <span class="step-title">Launch GUI & Save Configuration</span>
         <div class="step-content">
@@ -305,11 +344,16 @@
         </div>
       </div>
 
-       <div class="step">
+      <div class="step" id="step-6">
         <span class="step-number">6</span>
         <span class="step-title">Show Results</span>
         <div class="step-content">
-         To view the results, click <span class="button-highlight">Show Results</span> to open the results manager. There, select the <strong>configuration</strong>, and the <strong>X</strong> and  <strong>Y</strong> variables you wish to plot. Then click<span class="button-highlight">Plot</span>  to display the chart of the chosen variables.
+          To view the results, click <span class="button-highlight">Show Results</span> to open the results manager.
+          There, select the <strong>configuration</strong>, and the <strong>X</strong> and <strong>Y</strong> variables
+          you wish to plot. Then click<span class="button-highlight">Plot</span> to display the chart of the chosen
+          variables. If you are interested to the <strong> spanload</strong> of a given configuration, click the
+          <span class="button-highlight">Loads</span> button and a chart showing the spanloads of all existing wing
+          geometries will be displayed.
         </div>
       </div>
 
